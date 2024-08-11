@@ -1,0 +1,23 @@
+trigger:
+- development
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  WORKSPACE: '$(Build.SourcesDirectory)'
+
+container: 
+  image: alpine/terragrunt:latest 
+
+steps:
+- checkout: self
+  displayName: 'Checkout the repository'
+
+- script: |
+    bash -c 'terragrunt init && terragrunt plan'
+  displayName: 'Terragrunt Init and Plan'
+
+- script: |
+    bash -c 'terragrunt apply -auto-approve'
+  displayName: 'Terragrunt Apply'
