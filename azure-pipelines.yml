@@ -5,7 +5,6 @@ pool:
   vmImage: 'ubuntu-latest'
 
 variables:
-  TERRAGRUNT_IMAGE: 'alpine/terragrunt:latest'  # Usar uma imagem disponível publicamente ou criar uma própria no ACR
   WORKSPACE: '$(Build.SourcesDirectory)'
 
 steps:
@@ -15,9 +14,9 @@ steps:
 - script: |
     cd $(git diff --name-only HEAD~1 HEAD | while read -r file; do dirname "$file"; done | sort -u) && terragrunt init && terragrunt plan
   displayName: 'Terragrunt Init and Plan'
-  container: $(TERRAGRUNT_IMAGE)
+  container: 'alpine/terragrunt:latest'
 
 - script: |
     cd $(git diff --name-only HEAD~1 HEAD | while read -r file; do dirname "$file"; done | sort -u) && terragrunt apply -auto-approve
   displayName: 'Terragrunt Apply'
-  container: $(TERRAGRUNT_IMAGE)
+  container: 'alpine/terragrunt:latest'
