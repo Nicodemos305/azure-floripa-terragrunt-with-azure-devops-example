@@ -7,6 +7,9 @@ pool:
 variables:
   WORKSPACE: '$(Build.SourcesDirectory)'
 
+container: 
+  image: alpine/terragrunt:latest 
+
 steps:
 - checkout: self
   displayName: 'Checkout the repository'
@@ -14,9 +17,7 @@ steps:
 - script: |
     cd $(git diff --name-only HEAD~1 HEAD | while read -r file; do dirname "$file"; done | sort -u) && terragrunt init && terragrunt plan
   displayName: 'Terragrunt Init and Plan'
-  container: 'alpine/terragrunt:latest'
 
 - script: |
     cd $(git diff --name-only HEAD~1 HEAD | while read -r file; do dirname "$file"; done | sort -u) && terragrunt apply -auto-approve
   displayName: 'Terragrunt Apply'
-  container: 'alpine/terragrunt:latest'
