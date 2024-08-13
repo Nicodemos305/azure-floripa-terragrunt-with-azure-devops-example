@@ -1,4 +1,4 @@
-name                = "front-end-cripto-xpto-2024"
+name                = "frontendcriptoxpto2024"
 resource_group_name = "criptocoins"
 location            = "East US"
 account_tier        = "Standard"
