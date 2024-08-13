@@ -10,12 +10,6 @@ variable "container_name" {
   default     = ""
 }
 
-variable "key" {
-  description = "Path to the state file in the storage container"
-  type        = string
-  default     = ""
-}
-
 variable "resource_group_name" {
   description = "Azure resource group name"
   type        = string
@@ -51,7 +45,7 @@ remote_state {
   config = {
     storage_account_name   = var.storage_account_name != "" ? var.storage_account_name : (get_env("AZURE_STORAGE_ACCOUNT_NAME"))
     container_name         = var.container_name != "" ? var.container_name : (get_env("AZURE_CONTAINER_NAME"))
-    key                    = var.key != "" ? var.key : (get_env("AZURE_KEY"))
+    key                    = "${basename(get_parent_terragrunt_dir())}/${path_relative_to_include()}.tfstate"
     resource_group_name    = var.resource_group_name != "" ? var.resource_group_name : (get_env("AZURE_RESOURCE_GROUP_NAME"))
     subscription_id        = var.subscription_id != "" ? var.subscription_id : (get_env("AZURE_SUBSCRIPTION_ID"))
     tenant_id              = var.tenant_id != "" ? var.tenant_id : (get_env("AZURE_TENANT_ID"))
