@@ -8,7 +8,7 @@ variables:
   WORKSPACE: '$(Build.SourcesDirectory)'
 
 container: 
-  image: alpine/terragrunt:latest 
+  image: azurefloripaworkshopacr2024.azurecr.io/azure-floripa-terragrunt:v1 
 
 steps:
 - checkout: self
