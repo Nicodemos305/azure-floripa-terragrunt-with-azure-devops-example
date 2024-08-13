@@ -16,26 +16,16 @@ steps:
   displayName: 'Checkout the repository'
 
 - script: |
-    echo "Workspace: $(WORKSPACE)"
-    echo "Azure Container Name: $(AZURE_CONTAINER_NAME)"
-    echo "Azure Storage Account Name: $(AZURE_STORAGE_ACCOUNT_NAME)"
-    ls -la
-  displayName: 'Display Environment Variables'
-
-- script: |
     echo "Changing directory to $(WORKSPACE)"
-    cd $(WORKSPACE)
-    terragrunt init
+    terragrunt run-all init
   displayName: 'Terragrunt Init'
 
 - script: |
     echo "Changing directory to $(WORKSPACE)"
-    cd $(WORKSPACE)
-    terragrunt plan
+    terragrunt run-all plan
   displayName: 'Terragrunt Plan'
 
 - script: |
     echo "Changing directory to $(WORKSPACE)"
-    cd $(WORKSPACE)
-    terragrunt apply -auto-approve
+    terragrunt run-all apply -auto-approve
   displayName: 'Terragrunt Apply'
