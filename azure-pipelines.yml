@@ -9,6 +9,7 @@ variables:
 
 container: 
   image: azurefloripaworkshopacr2024.azurecr.io/azure-floripa-terragrunt:v1 
+  endpoint: acrconnector
 
 steps:
 - checkout: self
