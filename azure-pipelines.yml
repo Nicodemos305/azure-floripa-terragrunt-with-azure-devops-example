@@ -15,7 +15,7 @@ steps:
 - checkout: self
   displayName: 'Checkout the repository'
 
-  - script: |
+- script: |
     echo "Workspace: $(WORKSPACE)"
     echo "Azure Container Name: $(AZURE_CONTAINER_NAME)"
     echo "Azure Storage Account Name: $(AZURE_STORAGE_ACCOUNT_NAME)"
