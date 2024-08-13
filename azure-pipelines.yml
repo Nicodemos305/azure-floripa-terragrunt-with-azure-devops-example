@@ -23,8 +23,12 @@ steps:
   displayName: 'Display Environment Variables'
 
 - script: |
-    bash -c 'terragrunt init && terragrunt plan'
-  displayName: 'Terragrunt Init and Plan'
+    bash -c 'terragrunt init'
+  displayName: 'Terragrunt Init'
+
+- script: |
+    bash -c 'terragrunt plan'
+  displayName: 'Terragrunt  Plan'
 
 - script: |
     bash -c 'terragrunt apply -auto-approve'
