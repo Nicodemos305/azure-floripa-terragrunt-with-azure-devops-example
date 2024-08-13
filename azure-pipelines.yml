@@ -23,13 +23,19 @@ steps:
   displayName: 'Display Environment Variables'
 
 - script: |
-    bash -c 'terragrunt init'
+    echo "Changing directory to $(WORKSPACE)"
+    cd $(WORKSPACE)
+    terragrunt init
   displayName: 'Terragrunt Init'
 
 - script: |
-    bash -c 'terragrunt plan'
-  displayName: 'Terragrunt  Plan'
+    echo "Changing directory to $(WORKSPACE)"
+    cd $(WORKSPACE)
+    terragrunt plan
+  displayName: 'Terragrunt Plan'
 
 - script: |
-    bash -c 'terragrunt apply -auto-approve'
+    echo "Changing directory to $(WORKSPACE)"
+    cd $(WORKSPACE)
+    terragrunt apply -auto-approve
   displayName: 'Terragrunt Apply'
