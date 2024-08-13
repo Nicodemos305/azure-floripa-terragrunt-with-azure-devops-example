@@ -27,5 +27,5 @@ steps:
 
 - script: |
     echo "Changing directory to $(WORKSPACE)"
-    terragrunt run-all apply -auto-approve -input=false
+    terragrunt run-all --terragrunt-non-interactive apply -auto-approve
   displayName: 'Terragrunt Apply'
